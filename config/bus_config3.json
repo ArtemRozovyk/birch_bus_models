@@ -1,0 +1,12 @@
+{
+    "model": {
+      "class": "PoissonModel3"
+    },
+
+    "sampler": {
+      "nsamples": 1000
+    },
+    "input": "input/bus_data2.json",
+    "output": "output/busout3.json"
+  }
+  

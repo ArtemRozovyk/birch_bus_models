@@ -1,0 +1,30 @@
+/**
+ * Hello world.
+ */
+class  PoissonModel < Model {
+
+  d:Random<Boolean>;
+  b:Random<Integer[_]>;
+  v: Integer; 
+
+  function simulate() {
+    d <~ Bernoulli(0.28571428571);
+      if(d.value()){
+        v<-3;
+      }else{
+        v<-10;
+      }
+    for a in 1..length(b.value()){
+      b.value()[a]~> Poisson(v);
+    }
+  }
+
+ function write(buffer:Buffer) {
+      buffer.set("day", d);
+ }
+
+function read(buffer:Buffer) {
+      b <-? buffer.getIntegerVector("bus");
+}
+
+}

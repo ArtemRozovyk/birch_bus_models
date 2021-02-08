@@ -1,0 +1,30 @@
+/**
+ * Hello world.
+ */
+class  SecondModel < Model {
+
+  d:Random<Boolean>;
+  b:Random<Integer[_]>;
+  v: Random<Real>; 
+
+  function simulate() {
+    d <~ Bernoulli(0.28571428571);
+      if(d.value()){
+        v<~Gaussian(3,1);
+      }else{
+        v<~Gaussian(10,1);
+      }
+    for a in 1..length(b.value()){
+      b.value()[a]~> Poisson(v.value());
+    }
+  }
+
+ function write(buffer:Buffer) {
+      buffer.set("day", d);
+ }
+
+function read(buffer:Buffer) {
+      b <-? buffer.getIntegerVector("bus");
+}
+
+}

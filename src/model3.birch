@@ -1,0 +1,30 @@
+/**
+ * Hello world.
+ */
+class  PoissonModel3 < Model {
+
+  d:Random<Boolean>;
+  b:Random<Real[_]>;
+  v: Integer; 
+  rate: Real;
+  function simulate() {
+    d <~ Bernoulli(0.28571428571);
+      if(d.value()){
+        rate <-0.3333;
+      }else{
+        rate <-0.1;
+      }
+    for a in 1..length(b.value()){
+      b.value()[a]~> Exponential(rate);
+    }
+  }
+
+ function write(buffer:Buffer) {
+      buffer.set("day", d);
+ }
+
+function read(buffer:Buffer) {
+      b <-? buffer.getRealVector("bus");
+}
+
+}

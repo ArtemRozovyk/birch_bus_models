@@ -1,0 +1,12 @@
+{
+    "model": {
+      "class": "SecondModel"
+    },
+
+    "sampler": {
+      "nsamples": 1000
+    },
+    "input": "input/bus_data1.json",
+    "output": "output/busout2.json"
+  }
+  
